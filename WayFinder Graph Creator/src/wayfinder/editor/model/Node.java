@@ -10,5 +10,7 @@ import wayfinder.editor.model.utils.Vector;
 public class Node {
 	
 	private Vector position;
+	private String room;
+	private RoomType roomType;
 	
 }

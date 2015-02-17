@@ -9,6 +9,8 @@ public class Edge {
 	
 	private final Node node1;
 	private final Node node2;
+	private PermissionType permissionType;
+	private AccessType accessType;
 
 	public Edge(Node node1, Node node2) {
 		this.node1 = node1;

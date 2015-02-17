@@ -9,4 +9,6 @@ public interface Anchor {
 	
 	double getGlobalX();
 	double getGlobalY();
+	double getGlobalZ();
+	
 }

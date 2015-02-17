@@ -12,6 +12,7 @@ public class FloorAnchor implements Anchor {
 	private Floor toFlor;
 	private double xOffset;
 	private double yOffset;
+	private double zOffset;
 
 	@Override
 	public double getGlobalX() {
@@ -21,6 +22,11 @@ public class FloorAnchor implements Anchor {
 	@Override
 	public double getGlobalY() {
 		return toFlor.getAnchor().getGlobalY() + yOffset;
+	}
+
+	@Override
+	public double getGlobalZ() {
+		return toFlor.getAnchor().getGlobalZ() + zOffset;
 	}
 	
 }

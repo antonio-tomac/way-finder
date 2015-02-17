@@ -4,7 +4,6 @@ package wayfinder.editor.model;
 import java.awt.Image;
 import java.util.List;
 import wayfinder.editor.model.anchors.Anchor;
-import wayfinder.editor.model.utils.Vector;
 
 /**
  *
@@ -13,10 +12,12 @@ import wayfinder.editor.model.utils.Vector;
 public class Floor {
 	
 	private Image image;
+	private double imageScale;
+	private double imageRotation;
 	
 	private List<Node> nodes;
 	private Anchor anchor;
-//	private Vector anchorPoint;
+	private String floorName;
 
 	public Image getImage() {
 		return image;

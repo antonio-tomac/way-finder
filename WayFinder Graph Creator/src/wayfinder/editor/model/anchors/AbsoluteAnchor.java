@@ -9,6 +9,7 @@ public class AbsoluteAnchor implements Anchor {
 	
 	private double x;
 	private double y;
+	private double z;
 
 	@Override
 	public double getGlobalX() {
@@ -18,6 +19,11 @@ public class AbsoluteAnchor implements Anchor {
 	@Override
 	public double getGlobalY() {
 		return y;	
+	}	
+	
+	@Override
+	public double getGlobalZ() {
+		return z;	
 	}	
 	
 }
