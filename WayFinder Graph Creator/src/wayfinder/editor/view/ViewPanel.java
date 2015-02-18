@@ -3,8 +3,10 @@ package wayfinder.editor.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.SwingUtilities;
 import wayfinder.controllers.Controller;
 import wayfinder.editor.model.Floor;
+import wayfinder.editor.model.utils.Vector;
 
 /**
  *
@@ -32,6 +34,22 @@ public class ViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                formMouseWheelMoved(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -43,6 +61,18 @@ public class ViewPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        controller.dragged(evt.getX(), evt.getY(), SwingUtilities.isRightMouseButton(evt));
+    }//GEN-LAST:event_formMouseDragged
+
+    private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
+        controller.scrolled(evt.getPreciseWheelRotation(), new Vector(evt.getX(), evt.getY()));
+    }//GEN-LAST:event_formMouseWheelMoved
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+        controller.mouseReleased();
+    }//GEN-LAST:event_formMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

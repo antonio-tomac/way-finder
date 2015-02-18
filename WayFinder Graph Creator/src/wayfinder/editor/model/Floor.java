@@ -1,12 +1,10 @@
 package wayfinder.editor.model;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,6 +84,7 @@ public class Floor implements Drawable {
 
 	@Override
 	public void draw(Graphics g, Vector offset, double scale) {
-		g.drawImage(image, 0, 0, null);
+		g.drawImage(image, (int) (offset.x*scale),	(int) (offset.y*scale), 
+				(int)(image.getWidth()*scale), (int)(image.getHeight()*scale), null);
 	}
 }
