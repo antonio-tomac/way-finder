@@ -61,6 +61,10 @@ public class Floor implements Drawable {
 		
 	}
 	
+	public void flipImage() {
+		
+	}
+	
 	@Override
 	public void draw(Graphics g, Vector offset, double scale) {
 		int width = image.getWidth();
