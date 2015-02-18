@@ -12,11 +12,12 @@ public class Edge {
 	private PermissionType permissionType;
 	private AccessType accessType;
 
-	public Edge(Node node1, Node node2) {
+	public Edge(Node node1, Node node2, PermissionType permissionType, AccessType accessType) {
 		this.node1 = node1;
 		this.node2 = node2;
-	}
-	
+		this.permissionType = permissionType;
+		this.accessType = accessType;
+	}	
 	
 	
 }

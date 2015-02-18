@@ -89,6 +89,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Add floor"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addFloorButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addNodeButton">
           <Properties>
@@ -459,6 +462,9 @@
       </SubComponents>
     </Container>
     <Container class="wayfinder.editor.view.ViewPanel" name="viewPanel1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ViewPanel(controller);&#xa;"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

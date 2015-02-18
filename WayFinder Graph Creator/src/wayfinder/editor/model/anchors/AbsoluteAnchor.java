@@ -11,6 +11,12 @@ public class AbsoluteAnchor implements Anchor {
 	private double y;
 	private double z;
 
+	public AbsoluteAnchor(double x, double y, double z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+
 	@Override
 	public double getGlobalX() {
 		return x;

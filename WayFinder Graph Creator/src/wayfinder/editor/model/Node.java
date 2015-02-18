@@ -12,5 +12,11 @@ public class Node {
 	private Vector position;
 	private String room;
 	private RoomType roomType;
+
+	public Node(Vector position, String room, RoomType roomType) {
+		this.position = position;
+		this.room = room;
+		this.roomType = roomType;
+	}
 	
 }

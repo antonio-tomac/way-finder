@@ -3,6 +3,8 @@ package wayfinder.editor.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import wayfinder.controllers.Controller;
+import wayfinder.editor.model.Floor;
 
 /**
  *
@@ -10,11 +12,15 @@ import java.awt.Graphics;
  */
 public class ViewPanel extends javax.swing.JPanel {
 
+	private final Controller controller;
+	
 	/**
 	 * Creates new form ViewPanel
+	 * @param controller
 	 */
-	public ViewPanel() {
+	public ViewPanel(Controller controller) {
 		initComponents();
+		this.controller = controller;
 	}
 
 	/**
@@ -43,8 +49,9 @@ public class ViewPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 	@Override
-	public void paint(Graphics g) {
+	public void paintComponent(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		controller.drawFocusedFloor(g);
 	}
 }
