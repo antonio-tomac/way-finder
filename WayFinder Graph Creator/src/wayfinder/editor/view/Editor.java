@@ -43,6 +43,7 @@ public class Editor extends javax.swing.JFrame {
         rotateClockwiseButton = new javax.swing.JButton();
         rotateAnticlockwiseButton = new javax.swing.JButton();
         setAnchorToButton = new javax.swing.JButton();
+        flipFloorButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         xNodeTextField = new javax.swing.JTextField();
@@ -85,14 +86,31 @@ public class Editor extends javax.swing.JFrame {
 
         jButton3.setText("Add edge");
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(210);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         rotateClockwiseButton.setText("Rotate clockwise");
+        rotateClockwiseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotateClockwiseButtonActionPerformed(evt);
+            }
+        });
 
         rotateAnticlockwiseButton.setText("Rotate anticlockwise");
+        rotateAnticlockwiseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotateAnticlockwiseButtonActionPerformed(evt);
+            }
+        });
 
         setAnchorToButton.setText("Set anchor to...");
+
+        flipFloorButton.setText("Flip");
+        flipFloorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flipFloorButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,6 +121,7 @@ public class Editor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rotateAnticlockwiseButton)
                     .addComponent(rotateClockwiseButton)
+                    .addComponent(flipFloorButton)
                     .addComponent(setAnchorToButton))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
@@ -114,8 +133,10 @@ public class Editor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rotateAnticlockwiseButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(flipFloorButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(setAnchorToButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Floor", jPanel1);
@@ -186,7 +207,7 @@ public class Editor extends javax.swing.JFrame {
                     .addComponent(nodeOfficeRadio)
                     .addComponent(nodeHallRadio)
                     .addComponent(nodeClassroomRadio))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 62, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Node", jPanel3);
@@ -330,6 +351,18 @@ public class Editor extends javax.swing.JFrame {
 		controller.addFloorPressed();
     }//GEN-LAST:event_addFloorButtonActionPerformed
 
+    private void rotateClockwiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotateClockwiseButtonActionPerformed
+		controller.rotateSelectedFloorClockwise();
+    }//GEN-LAST:event_rotateClockwiseButtonActionPerformed
+
+    private void rotateAnticlockwiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotateAnticlockwiseButtonActionPerformed
+        controller.rotateSelectedFloorAnticlockwise();
+    }//GEN-LAST:event_rotateAnticlockwiseButtonActionPerformed
+
+    private void flipFloorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flipFloorButtonActionPerformed
+        controller.flipSelectedFloor();
+    }//GEN-LAST:event_flipFloorButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFloorButton;
@@ -342,6 +375,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JRadioButton edgePermissionRadio;
     private javax.swing.JRadioButton edgeStaffRadio;
     private javax.swing.JRadioButton edgeStairsRadio;
+    private javax.swing.JButton flipFloorButton;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

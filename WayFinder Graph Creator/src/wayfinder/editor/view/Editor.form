@@ -105,7 +105,7 @@
         </Component>
         <Container class="javax.swing.JSplitPane" name="jSplitPane1">
           <Properties>
-            <Property name="dividerLocation" type="int" value="200"/>
+            <Property name="dividerLocation" type="int" value="210"/>
             <Property name="orientation" type="int" value="0"/>
           </Properties>
 
@@ -137,6 +137,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="rotateAnticlockwiseButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="rotateClockwiseButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="flipFloorButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="setAnchorToButton" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="128" max="32767" attributes="0"/>
@@ -151,8 +152,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="rotateAnticlockwiseButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="flipFloorButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="setAnchorToButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="18" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -162,16 +165,30 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Rotate clockwise"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rotateClockwiseButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="rotateAnticlockwiseButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Rotate anticlockwise"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rotateAnticlockwiseButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="setAnchorToButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Set anchor to..."/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="flipFloorButton">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Flip"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="flipFloorButtonActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -240,7 +257,7 @@
                                   <Component id="nodeHallRadio" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="nodeClassroomRadio" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

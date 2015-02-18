@@ -47,9 +47,33 @@ public class Controller {
 		} catch (IOException ex) {
 			return;
 		}
-		Floor floor = new Floor(image, 1, Floor.Rotation.ACW, new AbsoluteAnchor(0, 0, 0), selectedFile.getName());
+		Floor floor = new Floor(image, 1, new AbsoluteAnchor(0, 0, 0), selectedFile.getName());
 		model.addFloor(floor);
 		editor.repaint();
+	}
+	
+	public void rotateSelectedFloorClockwise() {
+		if (!model.getFloors().isEmpty()) {
+			Floor floor = model.getFloors().iterator().next();
+			floor.rotateImageClockwise();
+			editor.repaint();
+		}
+	}
+	
+	public void rotateSelectedFloorAnticlockwise() {
+		if (!model.getFloors().isEmpty()) {
+			Floor floor = model.getFloors().iterator().next();
+			floor.rotateImageAntilockwise();
+			editor.repaint();
+		}
+	}
+	
+	public void flipSelectedFloor() {
+		if (!model.getFloors().isEmpty()) {
+			Floor floor = model.getFloors().iterator().next();
+			floor.flipImage();
+			editor.repaint();
+		}
 	}
 	
 	public void drawFocusedFloor(Graphics g) {

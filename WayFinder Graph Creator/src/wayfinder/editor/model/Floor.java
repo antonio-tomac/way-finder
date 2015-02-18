@@ -8,6 +8,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import wayfinder.editor.model.anchors.Anchor;
 import wayfinder.editor.model.utils.Vector;
@@ -22,6 +23,10 @@ public class Floor implements Drawable {
 
 		NORMAL, CW, ACW, FLIPPED
 	}
+	
+	public static final List<Rotation> rotations = Arrays.asList(new Rotation[] {
+		Rotation.NORMAL, Rotation.CW, Rotation.FLIPPED, Rotation.ACW
+	});
 
 	private BufferedImage image;
 	private double imageScale;
@@ -31,11 +36,11 @@ public class Floor implements Drawable {
 	private Anchor anchor;
 	private String floorName;
 
-	public Floor(BufferedImage image, double imageScale, Rotation imageRotation,
+	public Floor(BufferedImage image, double imageScale,
 			Anchor anchor, String floorName) {
 		this.image = image;
 		this.imageScale = imageScale;
-		this.imageRotation = imageRotation;
+		this.imageRotation = Rotation.NORMAL;
 		this.anchor = anchor;
 		this.floorName = floorName;
 		nodes = new ArrayList<>();
@@ -54,53 +59,33 @@ public class Floor implements Drawable {
 	}
 
 	public void rotateImageClockwise() {
-		
+		int rotatePoint = image.getHeight() / 2;
+		AffineTransform at = AffineTransform.getRotateInstance(
+				Math.toRadians(90), rotatePoint, rotatePoint);
+		AffineTransformOp aop = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+		image = aop.filter(image, null);
+		imageRotation = rotations.get((rotations.indexOf(imageRotation) + 1) % 4);
 	}
-	
+
 	public void rotateImageAntilockwise() {
-		
+		int rotatePoint = image.getWidth() / 2;
+		AffineTransform at = AffineTransform.getRotateInstance(
+				Math.toRadians(-90), rotatePoint, rotatePoint);
+		AffineTransformOp aop = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+		image = aop.filter(image, null);
+		imageRotation = rotations.get((rotations.indexOf(imageRotation) + 3) % 4);
 	}
-	
+
 	public void flipImage() {
-		
+		AffineTransform at = AffineTransform.getRotateInstance(
+				Math.toRadians(180), image.getWidth() / 2, image.getHeight() / 2);
+		AffineTransformOp aop = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+		image = aop.filter(image, null);
+		imageRotation = rotations.get((rotations.indexOf(imageRotation) + 2) % 4);
 	}
-	
+
 	@Override
 	public void draw(Graphics g, Vector offset, double scale) {
-		int width = image.getWidth();
-		int height = image.getHeight();
-		BufferedImage result;
-		if (imageRotation.equals(Rotation.NORMAL)) {
-			result = image;
-		} else {
-			int angle = 0;
-			int rotatePointX = 0;
-			int rotatePointY = 0;
-			if (imageRotation.equals(Rotation.CW)) {
-				angle = 90;
-				rotatePointX = rotatePointY = height / 2;
-			} else if (imageRotation.equals(Rotation.FLIPPED)) {
-				angle = 180;
-				rotatePointX = width / 2;
-				rotatePointY = height / 2;
-			} else {
-				angle = -90;
-				rotatePointX = rotatePointY = width / 2;
-			}
-			if (imageRotation.equals(Rotation.CW) || imageRotation.equals(Rotation.ACW)) {
-				int tmp = height;
-				height = width;
-				width = tmp;
-			}
-			AffineTransform at = AffineTransform.getRotateInstance(
-					Math.toRadians(angle),
-					rotatePointX, rotatePointY
-			);
-			AffineTransformOp aop = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-			result = aop.filter(image, null);
-		
-		}
-		
-		g.drawImage(result, 0, 0, width / 2, height / 2, null);
+		g.drawImage(image, 0, 0, null);
 	}
 }
