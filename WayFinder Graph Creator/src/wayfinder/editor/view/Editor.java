@@ -1,6 +1,9 @@
 
 package wayfinder.editor.view;
 
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import wayfinder.controllers.Controller;
 
 /**
@@ -15,9 +18,23 @@ public class Editor extends javax.swing.JFrame {
 	 * Creates new form Editor
 	 * @param controller
 	 */
-	public Editor(Controller controller) {
+	public Editor(final Controller controller) {
 		this.controller = controller;
 		initComponents();
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher(new KeyEventDispatcher() {
+
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getID() == KeyEvent.KEY_PRESSED) {
+                    controller.keyPressed(e);
+                }
+                else if (e.getID() == KeyEvent.KEY_RELEASED) {
+                    controller.keyReleased(e);
+                }
+                return false;
+            }
+        });
 	}
 
 	/**

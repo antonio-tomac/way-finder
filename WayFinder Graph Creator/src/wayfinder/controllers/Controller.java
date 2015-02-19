@@ -1,10 +1,10 @@
 package wayfinder.controllers;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import wayfinder.editor.model.Floor;
@@ -100,12 +100,12 @@ public class Controller {
 	}
 
 	public void addFloorPressed() {
-//        JFileChooser fc = new JFileChooser("/home/antonio/");
-//        int result = fc.showOpenDialog(null);
-//        if (result != JFileChooser.APPROVE_OPTION) {
-//            return;
-//        }
-		File selectedFile = new File("/home/antonio/Desktop/poster.jpg");//fc.getSelectedFile();
+		JFileChooser fc = new JFileChooser();
+		int result = fc.showOpenDialog(null);
+		if (result != JFileChooser.APPROVE_OPTION) {
+			return;
+		}
+		File selectedFile = fc.getSelectedFile();
 		BufferedImage image;
 		try {
 			image = ImageIO.read(selectedFile);
@@ -146,5 +146,22 @@ public class Controller {
 			Floor floor = model.getFloors().iterator().next();
 			floor.draw(g, offsetPosition, zoom);
 		}
+	}
+
+	public void keyPressed(KeyEvent keyEvent) {
+		if (!model.getFloors().isEmpty()) {
+			Floor floor = model.getFloors().iterator().next();
+			if (keyEvent.getKeyCode() == KeyEvent.VK_PLUS) {
+				floor.setImageScale(floor.getImageScale() * 1.02);
+				editor.repaint();
+			} else if (keyEvent.getKeyCode() == KeyEvent.VK_MINUS) {
+				floor.setImageScale(floor.getImageScale() / 1.02);
+				editor.repaint();
+			}
+		}
+	}
+
+	public void keyReleased(KeyEvent keyEvent) {
+
 	}
 }

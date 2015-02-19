@@ -48,6 +48,30 @@ public class Floor implements Drawable {
 		return image;
 	}
 
+	public double getImageScale() {
+		return imageScale;
+	}
+
+	public void setImageScale(double imageScale) {
+		this.imageScale = imageScale;
+	}
+
+	public Rotation getImageRotation() {
+		return imageRotation;
+	}
+
+	public void setImageRotation(Rotation imageRotation) {
+		this.imageRotation = imageRotation;
+	}
+
+	public String getFloorName() {
+		return floorName;
+	}
+
+	public void setFloorName(String floorName) {
+		this.floorName = floorName;
+	}
+
 	public List<Node> getNodes() {
 		return nodes;
 	}
@@ -85,6 +109,6 @@ public class Floor implements Drawable {
 	@Override
 	public void draw(Graphics g, Vector offset, double scale) {
 		g.drawImage(image, (int) (offset.x*scale),	(int) (offset.y*scale), 
-				(int)(image.getWidth()*scale), (int)(image.getHeight()*scale), null);
+				(int)(image.getWidth()*scale*imageScale), (int)(image.getHeight()*scale*imageScale), null);
 	}
 }
